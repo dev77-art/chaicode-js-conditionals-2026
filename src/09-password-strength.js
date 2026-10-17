@@ -26,5 +26,66 @@
  * @returns {string} "weak", "medium", "strong", or "very strong"
  */
 export function checkPasswordStrength(password) {
-  // Your code here
+if (typeof password != "string" || password.length==0) {
+  return "weak" ;
+}
+
+
+  let strengthLevel = 0 ;
+  
+  // checking of lowercase letter
+  let lc = false ;
+for(let i = 97 ; i <= 122 ; i++) {
+  lc = password.includes(String.fromCharCode(i)) ;
+  if(lc) {
+    strengthLevel ++ ;
+    break ;
+  } 
+} 
+
+// checking of uppercase letter
+let uc = false ;
+for(let i = 65 ; i <= 90 ; i++) {
+  uc = password.includes(String.fromCharCode(i)) ;
+  if(uc) {
+    strengthLevel ++ ;
+    break ;
+  } 
+} 
+// checking whether the length of the password is atleast 8 characters long
+if ( password.length >= 8) {
+  strengthLevel ++ ;
+}
+
+//contains alteast one number 
+let n = false ;
+for ( let i = 0 ;i <= 9 ; i++) {
+n = password.includes(String(i)) ;
+if (n) {
+  strengthLevel ++ ;
+  break ;
+}
+}
+
+// contains alteast one special character
+let sc = false ;
+const specialChars = "!@#$%^&*()_+-=[]{}|;:,.<>?" ;
+for ( let i = 0 ; i<specialChars.length ; i++) {
+  sc = password.includes (specialChars[i]) ;
+  if ( sc) {
+    strengthLevel ++ ;
+    break ;
+  }
+}
+
+//evaluation of password strength 
+if ( strengthLevel ===1 || strengthLevel ===0) {
+  return "weak"
+} else if ( strengthLevel ===2 || strengthLevel ===3) {
+  return "medium"
+} else if ( strengthLevel === 4) {
+  return "strong"
+} else if ( strengthLevel ===5) {
+  return "very strong" ;
+}
 }

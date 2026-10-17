@@ -17,11 +17,41 @@
  * Rules:
  *   - If age is negative or not a number, return -1
  *   - isWeekend is a boolean
- *
+ *no
  * @param {number} age - The customer's age
  * @param {boolean} isWeekend - Whether it's a weekend
  * @returns {number} The ticket price, or -1 for invalid input
  */
 export function getTicketPrice(age, isWeekend) {
+  if (typeof age !== "number" || Number.isNaN(age) || age < 0 || typeof isWeekend !== "boolean") {
+
+        return -1;
+
+    }
+
+    
+    if (age <= 12) {
+      if ( isWeekend ) {
+        return (8 + 3) ; 
+      }
+      else {return 8 ;}
+    } else if ( age >= 13 && age<= 17) {
+      if ( isWeekend ) {
+        return (12 + 3) ; 
+      }
+      else {return 12 ;}
+    } else if ( age >= 18 && age<= 59 ) {
+      if ( isWeekend ) {
+        return (15 + 3) ; 
+      }
+      else {return 15 ;}
+    } else if ( age >= 60) {
+      if ( isWeekend) {
+        return (10 + 3) ; 
+      }
+      else {return 10 ;}
+    }
+
+    return -1 ;
   // Your code here
-}
+} 
